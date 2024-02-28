@@ -14,3 +14,10 @@ after_success:
   - docker build -t victora2023/multi-nginx ./nginx
   - docker build -t victora2023/multi-server ./server
   - docker build -t victora2023/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push victora2023/multi-client
+  - docker push victora2023/multi-nginx
+  - docker push victora2023/multi-server
+  - docker push victora2023/multi-worker
