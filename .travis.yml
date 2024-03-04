@@ -21,3 +21,15 @@ after_success:
   - docker push victora2023/multi-nginx
   - docker push victora2023/multi-server
   - docker push victora2023/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app: multi-docker
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-eu-west-1-366477166033
+  bucket_path: docker-multi
+  on:
+    branch: masters
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
